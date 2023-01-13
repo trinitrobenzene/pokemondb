@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/pokemondb/static/css/main.e91c2e7f.css",
+    "main.js": "/pokemondb/static/js/main.c176a22d.js",
+    "index.html": "/pokemondb/index.html",
+    "main.e91c2e7f.css.map": "/pokemondb/static/css/main.e91c2e7f.css.map",
+    "main.c176a22d.js.map": "/pokemondb/static/js/main.c176a22d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e91c2e7f.css",
+    "static/js/main.c176a22d.js"
+  ]
+}
