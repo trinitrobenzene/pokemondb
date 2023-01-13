@@ -1,0 +1,7 @@
+header {
+    background-repeat: none;
+    background-image: url('https://img.pokemondb.net/design/avif/header-lg.avif');
+    background-size: contain;
+    background-position-y: center;
+    aspect-ratio: 57/5;
+}
