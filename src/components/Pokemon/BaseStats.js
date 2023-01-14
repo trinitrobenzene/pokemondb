@@ -8,7 +8,7 @@ const BaseStats = ({ stats }) => {
 
     const total = useMemo(() => {
         return stats.reduce((sum, stat) => sum + stat.base_stat, 0);
-    }, []);
+    }, [stats]);
 
     const style = (stat) => {
         // let percent = stat > 100 ? 100 : stat;
@@ -19,7 +19,7 @@ const BaseStats = ({ stats }) => {
         else if (stat > 150) color = '#00c2b8';
 
         return {
-            '--percent': `${stat}%`,
+            '--percent': `${stat*0.5}%`,
             '--color': `${color}`,
         };
     };

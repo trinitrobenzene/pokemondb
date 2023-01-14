@@ -1,15 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { SET_POKEMON } from '../Redux/Action';
-import Species, { GetDetail } from '../Species';
-import Breeding from '../Species/Breeding';
-import DexEntries from '../Species/DexEntries';
-import Training from '../Species/Training';
+import { GetDetail, Breeding, DexEntries, Training } from '../Species';
 import { upperGen } from '../Support';
+import { TypeLink } from '../Type/Overview';
 import BaseStats from './BaseStats';
 import Quickview from './Quickview';
 import './style.css';
+
+export const TypeInline = ({ types }) => {
+    return (
+        <>
+            {types.map((type, index) => (
+                <span key={index}>
+                    <TypeLink name={type.name} />
+                    {index < types.length - 1 ? '/' : ''}
+                </span>
+            ))}
+        </>
+    );
+};
+
+const Introduce = ({ props }) => {
+    let { pokemon, detail } = props;
+    return (
+        <p>
+            {pokemon.name} is a {<TypeInline types={pokemon.types} />} type
+            Pokémon introduced in {upperGen(detail.generation.name)}. It is know as '{detail.genera.genus}
+            '.
+        </p>
+    );
+};
 
 const Pokemon = () => {
     const { name } = useParams();
@@ -19,7 +41,7 @@ const Pokemon = () => {
         return state.Pokemon;
     });
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
             .then((res) => res.json())
             .then((data) => {
@@ -28,19 +50,11 @@ const Pokemon = () => {
             });
     }, [name, dispatch]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`)
             .then((res) => res.json())
             .then((data) => setDetail(GetDetail(data)));
     }, [name]);
-
-    const overview = () => {
-        // detail && console.log(detail);
-        let types = pokemon.types.map(type => type.name).join('/');
-        let gen = detail ? upperGen(detail.generation.name) : ''
-        let genus = detail ? detail.genera.genus : '' 
-        return `${pokemon.name} is a ${types} type Pokémon introduced in ${gen}. It is know as '${genus}'.`
-    }
 
     return (
         <div className="main-width">
@@ -52,7 +66,9 @@ const Pokemon = () => {
                     <>
                         <div className="grid grid-cols-4 gap-4">
                             <div className="col-span-3 py-4">
-                                {pokemon && overview()}
+                                {pokemon && detail && (
+                                    <Introduce props={{ pokemon, detail }} />
+                                )}
                                 <div className="flex">
                                     <img
                                         alt={name}
@@ -65,7 +81,9 @@ const Pokemon = () => {
                                 </div>
                             </div>
                             <div className="col-span-1 py-4">
-                                <Training detail={detail} />
+                                <Training
+                                    more={{ detail, baseExp: pokemon.baseExp }}
+                                />
                                 <Breeding detail={detail} />
                             </div>
                         </div>

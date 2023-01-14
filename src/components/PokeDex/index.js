@@ -4,15 +4,9 @@ import { useParams } from 'react-router-dom';
 import National from './National';
 
 const Pokedex = () => {
-    let {page} = useParams();
-    
-    return (
-        <div className="main-width">
-            <div className='bg-slate-50 p-8'>
-            {page ? <National /> : <Default />}
-            </div>
-        </div>
-    );
+    let { page } = useParams();
+
+    return page ? <National /> : <Default />;
 };
 
 export default Pokedex;

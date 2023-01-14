@@ -25,7 +25,7 @@
 
 @layer components {
     .main-width {
-        @apply mx-auto w-full md:w-4/5;
+        @apply box-border mx-auto w-full md:w-4/5;
     }
 
     .alert-secondary {
@@ -33,14 +33,26 @@
     }
 
     .alert-primary {
-        @apply p-4 bg-indigo-100 rounded-md
+        @apply p-4 bg-indigo-100 rounded-md;
     }
 
     .border-td {
         @apply border-y border-gray-300;
     }
 
-    
+    .types-btn {
+        @apply py-1 rounded text-white text-xs text-center text-outline inline-block;
+        width: 72px;
+        line-height: 1.4rem;
+    }
+
+    .text-outline {
+        text-shadow: 1px 1px 2px rgb(0 0 0 / 70%);
+    }
+}
+
+* {
+    box-sizing: border-box !important;
 }
 
 .App {
