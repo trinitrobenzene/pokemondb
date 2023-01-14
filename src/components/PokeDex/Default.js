@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Default() {
     return (
@@ -14,13 +15,15 @@ function Default() {
                     moves and more!
                 </p>
             </div>
-            <div className="grid grid-cols-4 gap-8 py-8">
-                <div className="alert-primary col-span-1">
-                    <h4 className="font-bold">All Pokémon (National Dex)</h4>
+            <div className="block md:grid grid-cols-4 gap-8 py-8">
+                <div className="alert-primary md:col-span-2 lg:col-span-1">
+                    <h4 className="font-bold">
+                        <Link to='/national' className='hover:underline text-blue-500'>All Pokémon (National Dex)</Link>
+                    </h4>
                 </div>
-                <div className="poke-stats col-span-3">
-                    <h3 className="font-bold">About Pokémon stats</h3>
-                    <div className="mt-4 text-justify">
+                <div className="poke-stats md:col-span-2 lg:col-span-3">
+                    <h3 className="font-bold text-center my-4 md:text-left">About Pokémon stats</h3>
+                    <div className="text-justify">
                         <p className="py-1">
                             Every Pokémon creature has an array of stats. HP
                             (Hit Points) is a Pokémon's life force. If your

@@ -1,13 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 const Header = () => {
-    const style = {
-        // backgroundImage: `url(${Banner})`,
-        // aspectRatio: '2.5',
-    };
-
-    return <header style={style} className="py-2"></header>;
+    return (
+        <Link to="/">
+            <header className="py-2 hover:cursor-pointer"></header>
+        </Link>
+    );
 };
 
 export default Header;

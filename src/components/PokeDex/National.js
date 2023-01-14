@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GET, GET_MORE } from '../Redux/Action';
+import { GET} from '../Redux/Action';
 import PokeCard from './PokeCard';
 
 const National = () => {
+    const [number, setNumber] = useState(60);
     const dispatch = useDispatch();
     const dex = useSelector(state => {
         return state.PokeDex;
     })
 
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=36&offset=0')
+        fetch('https://pokeapi.co/api/v2/pokemon?limit=3000&offset=0')
             .then((res) => res.json())
             .then((data) => dispatch({type: GET, payload: data}));
     }, []);
 
     const getMore = () => {
-        fetch(dex.next)
-            .then((res) => res.json())
-            .then((data) => {
-                dispatch({type: GET_MORE, payload: data})
-            });
+        setNumber(number+60);
     };
 
     return (
@@ -37,11 +34,11 @@ const National = () => {
                 </p>
             </div>
             <div className="mt-8 pb-8 border-t border-gray-300">
-                <div className="grid grid-cols-6 gap-6">
+                <div className="grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-6 lg:gap-6">
                     {dex.dex &&
-                        dex.dex.map((poke, i) => (
-                            <PokeCard url={poke.url} key={i} />
-                        ))}
+                        dex.dex.slice(0, number)
+                            .map((poke, i) => <PokeCard url={poke.url} key={i} />)
+                    }
                 </div>
                 <div className='flex justify-center pt-8'>
                     <button onClick={getMore} className="rounded-md bg-indigo-200 p-2">

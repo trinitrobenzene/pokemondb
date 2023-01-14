@@ -1,5 +1,5 @@
 .barchart {
     width: var(--percent);
-    background-color: yellow;
+    background-color: var(--color);
     height: 12px;
 }

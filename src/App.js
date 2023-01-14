@@ -3,6 +3,7 @@ import './App.css';
 import Footer from './components/Default/Footer';
 import Header from './components/Default/Header';
 import NavBar from './components/Default/NavBar';
+import HomePage from './components/Home';
 import Pokedex from './components/PokeDex';
 import Pokemon from './components/Pokemon';
 
@@ -12,7 +13,7 @@ function App() {
             <Header />
             <NavBar />
 			<Routes>
-				<Route path='/' element={<Pokedex />} />
+				<Route path='/' element={<HomePage />} />
 				<Route path='/:page' element={<Pokedex />} />
                 <Route path='/pokedex/:name' element={<Pokemon />} />
 			</Routes>

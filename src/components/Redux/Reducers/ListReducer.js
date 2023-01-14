@@ -1,4 +1,4 @@
-import { GET, GET_MORE } from "../Action";
+import { GET } from "../Action";
 
 const initialState = {
     dex: [],
@@ -18,13 +18,13 @@ const ListReducer = (state = initialState, { type, payload }) => {
                 prev: payload.prev
             }
 
-        case GET_MORE:
+        /* case GET_MORE:
             return {
                 ...state,
                 next: payload.next,
                 prev: payload.prev,
                 dex: state.dex.concat(payload.results)
-            }
+            } */
 
         default:
             return state;
