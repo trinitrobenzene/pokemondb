@@ -19,7 +19,7 @@ const BaseStats = ({ stats }) => {
         else if (stat > 150) color = '#00c2b8';
 
         return {
-            '--percent': `${stat*0.5}%`,
+            '--percent': `${stat * 0.5}%`,
             '--color': `${color}`,
         };
     };
@@ -27,15 +27,15 @@ const BaseStats = ({ stats }) => {
     return (
         <>
             <h3 className="font-bold mb-2">Base stats</h3>
-            <table className="border-collapse border-td table-auto w-full">
+            <table className="infor-table table-auto">
                 <tbody className="text-sm">
                     {stats.map((stat, i) => (
                         <tr key={i} className="border-td p-2">
-                            <td className="px-1 w-24 text-gray-500">
+                            <td className="w-24 text-gray-500">
                                 {formatStat(stat.stat.name)}
                             </td>
-                            <td className="px-1">{stat.base_stat}</td>
-                            <td className="px-1 w-2/3">
+                            <td>{stat.base_stat}</td>
+                            <td className="w-2/3">
                                 <div
                                     className="rounded barchart"
                                     style={style(stat.base_stat)}
@@ -44,12 +44,12 @@ const BaseStats = ({ stats }) => {
                         </tr>
                     ))}
                     <tr>
-                        <td className='text-gray-500'>Total</td>
+                        <td className="text-gray-500">Total</td>
                         <td className="font-bold">{total}</td>
                     </tr>
                 </tbody>
             </table>
-            <p className='py-4 text-gray-500 text-sm'>
+            <p className="py-4 text-gray-500 text-sm">
                 The ranges shown on the right are for a level 100 Pokémon.
                 Maximum values are based on a beneficial nature, 252 EVs, 31
                 IVs; minimum values are based on a hindering nature, 0 EVs, 0
@@ -59,4 +59,4 @@ const BaseStats = ({ stats }) => {
     );
 };
 
-export default BaseStats
+export default BaseStats;

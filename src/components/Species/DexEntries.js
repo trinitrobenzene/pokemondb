@@ -6,11 +6,11 @@ const DexEntries = ({ entries }) => {
         <div>
             <h3 className="font-bold mb-2">DexEntries</h3>
             <div className='py-4'>
-                <table className="border-collapse border-td table-auto w-full">
+                <table className="infor-table table-auto">
                     <tbody>
                         {entries.map((entry, index) => {
                             return (
-                                <tr className="border-td p-2" key={index}>
+                                <tr className="border-td" key={index}>
                                     <td className="text-right pr-4 font-bold w-1/8">
                                         {upperFirst(entry.version.name)}
                                     </td>

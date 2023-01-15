@@ -1,11 +1,18 @@
 // uppercase the first letter of string
-export const upperFirst = (word) => (word[0].toUpperCase() + word.slice(1)).replace('-', ' ');
+export const upperFirst = (word) =>
+    (word[0].toUpperCase() + word.slice(1)).replace('-', ' ');
+
+export const capitalFirstLetter = (input) => {
+    return input
+        .replace('-', ' ')
+        .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+};
 
 // uppercase gen letter
 export const upperGen = (text) => {
-    let i = text.indexOf('-')
-    return text.slice(0, i) + ' ' + text.slice(i+1).toUpperCase()
-}
+    let i = text.indexOf('-');
+    return text.slice(0, i) + ' ' + text.slice(i + 1).toUpperCase();
+};
 
 export const pokeIdTransfer = (id, sign = '') => {
     if (id < 10) return `${sign}00${id}`;

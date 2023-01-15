@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { GET_TYPE } from '../../Redux/Action';
 import { upperFirst } from '../../Support';
 import MovesType from './MovesType';
@@ -15,13 +15,16 @@ const DirectType = () => {
         fetch(`https://pokeapi.co/api/v2/type/${name}`)
             .then((res) => res.json())
             .then((data) => dispatch({ type: GET_TYPE, payload: data }));
-    }, [name, dispatch]);
+    }, [name]);
 
     return (
         <div className="main-width bg-slate-50">
             <div className="p-8">
                 <h2 className="text-center font-bold">
-                    {upperFirst(name)} (type)
+                    {upperFirst(name) + ' '}
+                    <Link to="/type" className="hover:underline opacity-80">
+                        (type)
+                    </Link>
                 </h2>
                 <div className="alert-secondary mt-4">
                     <p>
@@ -66,9 +69,12 @@ const DirectType = () => {
                         </span>
                     </li>
                 </ul>
-                {
-                    index === 0 ? <PokemonType /> : <MovesType />
-                }                
+                <div className={index === 0 ? 'visible' : 'hidden'}>
+                    <PokemonType />
+                </div>
+                <div className={index === 1 ? 'visible' : 'hidden'}>
+                    <MovesType />{' '}
+                </div>
             </div>
         </div>
     );

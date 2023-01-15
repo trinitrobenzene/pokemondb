@@ -1,6 +1,7 @@
 import React from 'react';
 import { TypeBtn } from '../Overview';
 import { useSelector } from 'react-redux';
+import { capitalFirstLetter } from '../../Support';
 
 const MovesType = () => {
     const type = useSelector((state) => state.Type);
@@ -11,8 +12,8 @@ const MovesType = () => {
             <table className="w-full table-fixed">
                 <thead>
                     <tr>
-                        <th>Name</th>
                         <th>Type</th>
+                        <th>Name</th>
                         <th>Cat</th>
                         <th>Power</th>
                         <th>Acc</th>
@@ -25,10 +26,10 @@ const MovesType = () => {
                 <tbody>
                     {moves && moves.map((move, i) => (
                         <tr key={i} className='py-2'>
-                            <td className='py-1 border-td'>{move.name}</td>
                             <td className='py-1 border-td'>
                                 <TypeBtn name={name} />
                             </td>
+                            <td className='py-1 border-td'>{capitalFirstLetter(move.name)}</td>
                             <td className='py-1 border-td'></td>
                             <td className='py-1 border-td'></td>
                             <td className='py-1 border-td'></td>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AllTypes } from '.';
 import { upperFirst } from '../Support';
 
 const TypeColor = (name) => {
@@ -86,13 +87,11 @@ export const TypeBtn = ({name}) => {
 };
 
 const Overview = () => {
-    const [types, setTypes] = useState(null);
+    const [types, setTypes] = useState([]);
 
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/type')
-            .then((res) => res.json())
-            .then((data) => setTypes(data));
-    });
+        setTypes(AllTypes)
+    }, []);
 
     return (
         <div className="main-width bg-slate-50">
@@ -103,15 +102,13 @@ const Overview = () => {
                         <h3 className="mb-2">Type quick-list</h3>
                         <div className='flex flex-wrap gap-1'>
                             {types &&
-                                types.results.map(
+                                types.map(
                                     (type, index) =>
-                                        index < 18 && (
-                                            <TypeBtn name={type.name} key={index}/>
-                                        )
+                                        index < 18 && <TypeBtn name={type} key={index}/>
                                 )}
                         </div>
                     </div>
-                    <div className="md:col-auto md:order-first">
+                    <div className="mt-6 md:col-auto md:order-first md:mt-0">
                         <h3 className="mb-2 text-center md:text-left">
                             About Pokémon types
                         </h3>

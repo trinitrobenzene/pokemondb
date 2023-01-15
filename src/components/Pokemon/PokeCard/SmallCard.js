@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { pokeIdTransfer, upperFirst } from '../../Support';
-import { TypeLink } from '../Overview';
+import { TypeLink } from '../../Type/Overview';
 
-export default function PokeCard({ url }) {
+export default function SmallCard({ url }) {
     const [pokemon, setPokemon] = useState(null);
 
     useEffect(() => {

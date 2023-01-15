@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './PokeCard.css';
-import { pokeIdTransfer, upperFirst } from '../Support';
-import { TypeLink } from '../Type/Overview';
+import { pokeIdTransfer, upperFirst } from '../../Support';
+import { TypeLink } from '../../Type/Overview';
 
-export default function PokeCard({ url }) {
+export default function MediumCard({ url }) {
     const [pokemon, setPokemon] = useState(null);
 
     useEffect(() => {
@@ -19,12 +19,13 @@ export default function PokeCard({ url }) {
                 })
             );
     }, [url]);
+    
     return (
         <>
             {pokemon && (
                 <div className="flex flex-col justify-center">
-                    <img alt="portrait" src={pokemon.portrait}/>
-                    <div className='text-center'>
+                    <img alt="portrait" src={pokemon.portrait} />
+                    <div className="text-center">
                         <p>{pokeIdTransfer(pokemon.id, '#')}</p>
                         <Link
                             className="font-bold hover:underline text-blue-600"
@@ -33,13 +34,13 @@ export default function PokeCard({ url }) {
                             {upperFirst(pokemon.name)}
                         </Link>
                         <p className="upper-first-letter">
-                                {pokemon.types.map((type, index) => 
-                                    <span key={index}>
-                                        <TypeLink name={type}/>
-                                        {index < pokemon.types.length - 1 ? " · " : ""} 
-                                    </span>
-                                )}
-                            </p>
+                            {pokemon.types.map((type, index) => (
+                                <span key={index}>
+                                    <TypeLink name={type} />
+                                    {index < pokemon.types.length - 1 ? ' · ' : ''}
+                                </span>
+                            ))}
+                        </p>
                     </div>
                 </div>
             )}

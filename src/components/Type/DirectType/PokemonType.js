@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { SmallCard } from '../../Pokemon/PokeCard';
 import { upperFirst } from '../../Support';
-import PokeCard from './PokeCardSm';
 
 const PokemonType = () => {
     const type = useSelector((state) => state.Type);
@@ -16,7 +16,7 @@ const PokemonType = () => {
                     </p>
                     <div className="flex flex-col items-center md:grid md:grid-cols-3 md:gap-4 lg:grid-cols-4">
                         {pokemons.map((pUrl, index) =>
-                            <PokeCard url={pUrl} key={index}/>
+                            <SmallCard url={pUrl} key={index}/>
                         )}
                     </div>
                 </>

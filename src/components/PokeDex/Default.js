@@ -5,7 +5,7 @@ function Default() {
     return (
         <div className="main-width bg-slate-50 p-8">
             <h2 className="text-center font-bold pb-8">Pokémon Pokédex by Generation</h2>
-            <div className="alert-secondary">
+            <div className="alert-secondary mt-4">
                 <p>
                     The Pokédex section has a wealth of information on all the
                     Pokémon creatures from the entire game series. On the main

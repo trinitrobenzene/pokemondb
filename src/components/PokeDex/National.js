@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { MediumCard } from '../Pokemon/PokeCard';
 import { GET} from '../Redux/Action';
-import PokeCard from './PokeCard';
 
 const National = () => {
     const [number, setNumber] = useState(60);
@@ -23,7 +23,7 @@ const National = () => {
     return (
         <div className="main-width bg-slate-50 p-8">
             <h2 className="text-center font-bold pb-8">Pokémon Pokédex</h2>
-            <div className="alert-secondary">
+            <div className="alert-secondary mt-4">
                 <p>
                     This is the complete National Pokédex for Generation 9,
                     which lists every one of the {dex.count} Pokémon discovered so far.
@@ -37,7 +37,7 @@ const National = () => {
                 <div className="grid grid-cols-3 gap-4 md:grid-cols-5 lg:grid-cols-6 lg:gap-6">
                     {dex.dex &&
                         dex.dex.slice(0, number)
-                            .map((poke, i) => <PokeCard url={poke.url} key={i} />)
+                            .map((poke, i) => <MediumCard url={poke.url} key={i} />)
                     }
                 </div>
                 <div className='flex justify-center pt-8'>
