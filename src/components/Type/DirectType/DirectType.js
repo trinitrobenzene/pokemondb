@@ -15,7 +15,7 @@ const DirectType = () => {
         fetch(`https://pokeapi.co/api/v2/type/${name}`)
             .then((res) => res.json())
             .then((data) => dispatch({ type: GET_TYPE, payload: data }));
-    }, [name]);
+    }, [name, dispatch]);
 
     return (
         <div className="main-width bg-slate-50">

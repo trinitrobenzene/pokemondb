@@ -1,5 +1,5 @@
 import React from 'react';
-import { capitalFirstLetter, upperFirst } from '../Support';
+import { capitalFirstLetter} from '../Support';
 
 const Training = ({more}) => {
     let {detail, baseExp} = more;

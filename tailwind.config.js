@@ -7,7 +7,7 @@ module.exports = {
         },
         extend: {
             fontFamily: {
-                roboto : ['Roboto', 'san-serif'],
+                fira : ['"Fira Sans"', 'san-serif'],
                 noto: ['"Noto Sans"','san-serif']
             }
         },

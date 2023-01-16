@@ -4,7 +4,7 @@ import { capitalFirstLetter } from '../../Support';
 import { useSelector } from 'react-redux';
 
 export default function Item({ props }) {
-    const { name, childs, icon } = props;
+    const { name, icon } = props;
     const game = useSelector((state) => state.GameVersion);
 
     const style = 'text-sm rounded-md inline-block';

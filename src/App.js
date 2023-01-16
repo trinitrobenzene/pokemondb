@@ -6,30 +6,35 @@ import Header from './components/Default/Header';
 import NavBar from './components/Default/NavBar';
 import HomePage from './components/Home';
 import Moves from './components/Moves';
+import AllMoves from './components/Moves/AllMove';
 import DirectMove from './components/Moves/DirectMove';
 import Pokedex from './components/PokeDex';
 import National from './components/PokeDex/National';
 import Pokemon from './components/Pokemon';
+import ScrollToTop from './components/Support/ScrollToTop';
 import Type from './components/Type';
 import DirectType from './components/Type/DirectType/DirectType';
 
 function App() {
     return (
         <div className="App">
+            <ScrollToTop/>
             <Header />
             <NavBar />
-			<Routes>
-				<Route path='/' element={<HomePage />} />
-				<Route path='/national' element={<National />} />
-				<Route path='/pokedex' element={<Pokedex />} />
-                <Route path='/pokedex/:name' element={<Pokemon />} />
-                <Route path='/type' element={<Type />} />
-                <Route path='/type/:name' element={<DirectType />} />
-                <Route path='/move' element={<Moves />} />
-                <Route path='/move/:name' element={<DirectMove />} />
-                <Route path='*' element={<ErrorPage />}/>
-			</Routes>
-
+            <Routes onUpdate={() => window.scrollTo(0, 0)}>
+                <Route index element={<HomePage />} />
+                <Route path="national" element={<National />} />
+                <Route path="pokedex" element={<Pokedex />} />
+                <Route path="pokedex/:name" element={<Pokemon />} />
+                <Route path="type" element={<Type />} />
+                <Route path="type/:name" element={<DirectType />} />
+                <Route path="move">
+                    <Route index element={<Moves />} />
+                    <Route path="all" element={<AllMoves />} />
+                    <Route path=":name" element={<DirectMove />} />
+                </Route>
+                <Route path="*" element={<ErrorPage />} />
+            </Routes>
             <Footer />
         </div>
     );

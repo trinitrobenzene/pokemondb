@@ -22,9 +22,9 @@ export default function BaseCard({ url }) {
     return (
         <>
             {pokemon && (
-                <div className="text-center mb-4 md:mb-0">
+                <div className="text-center b-4 md:mb-0">
                     <div className='flex justify-center'>
-                        <img alt="portrait" src={pokemon.portrait} className='w-2/5'/>
+                        <img alt="portrait" src={pokemon.portrait} className='w-4/5 md:w-3/5'/>
                     </div>
                     <div>
                         <Link
@@ -33,7 +33,7 @@ export default function BaseCard({ url }) {
                         >
                             {upperFirst(pokemon.name)}
                         </Link>
-                        <div className="text-xs grow px-2">
+                        <div className="text-sm grow px-2">
                             <span className="upper-first-letter">
                                 {pokemon.types.map((type, index) => (
                                     <span key={index}>

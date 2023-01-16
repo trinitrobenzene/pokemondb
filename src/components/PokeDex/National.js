@@ -40,8 +40,8 @@ const National = () => {
                             .map((poke, i) => <MediumCard url={poke.url} key={i} />)
                     }
                 </div>
-                <div className='flex justify-center pt-8'>
-                    <button onClick={getMore} className="rounded-md bg-indigo-200 p-2">
+                <div className='pt-8'>
+                    <button onClick={getMore} className="btn self-center">
                         Load More...
                     </button>
                 </div>

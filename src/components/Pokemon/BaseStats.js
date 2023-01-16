@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { capitalFirstLetter, upperFirst } from '../Support';
+import { capitalFirstLetter} from '../Support';
 
 const BaseStats = ({ stats }) => {
     const formatStat = (input) => {
@@ -12,13 +12,13 @@ const BaseStats = ({ stats }) => {
 
     const style = (stat) => {
         let color = 'lime';
-        if (stat < 55) color = 'tomato';
-        else if (stat < 100) color = 'gold';
-        else if (stat > 120) color = '#23cd5e';
-        else if (stat > 150) color = '#00c2b8';
+        if (stat <= 55) color = 'tomato';
+        if (stat < 90) color = 'gold';
+        if (stat >= 120) color = '#23cd5e';
+        if (stat >= 150) color = '#00c2b8';
 
         return {
-            '--percent': `${stat * 0.5}%`,
+            '--percent': `${stat <= 150 ? stat * 2/3 : 100}%`,
             '--color': `${color}`,
         };
     };
@@ -28,7 +28,8 @@ const BaseStats = ({ stats }) => {
         if (stat.stat.name === 'hp') {
             min = 2 * stat.base_stat + 110;
             max = 2 * stat.base_stat + 31 + 63 + 110;
-        } else {
+        }
+        else {
             min = Math.floor((2 * stat.base_stat + 5) * 0.9);
             max = Math.floor((2 * stat.base_stat + 31 + 63 + 5) * 1.1);
         }
@@ -53,7 +54,7 @@ const BaseStats = ({ stats }) => {
                                     style={style(stat.base_stat)}
                                 ></div>
                             </td>
-                            <td className='pr-1'> {boundStats(stat).min} </td>
+                            <td className="pr-1"> {boundStats(stat).min} </td>
                             <td>{boundStats(stat).max}</td>
                         </tr>
                     ))}
@@ -61,8 +62,8 @@ const BaseStats = ({ stats }) => {
                         <td className="text-gray-500">Total</td>
                         <td className="font-bold">{total}</td>
                         <td></td>
-                        <td className='pr-1 font-bold'>Min</td>
-                        <td className='font-bold'>Max</td>
+                        <td className="pr-1 font-bold">Min</td>
+                        <td className="font-bold">Max</td>
                     </tr>
                 </tbody>
             </table>

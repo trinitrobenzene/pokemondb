@@ -70,11 +70,10 @@ const Pokemon = () => {
                         <div className="lg:grid lg:grid-cols-4 gap-4">
                             <div className="col-span-3 py-4">
                                 <div className="md:flex">
-                                    <div className="flex justify-center">
+                                    <div className="px-6">
                                         <img
                                             alt={name}
                                             src={pokemon.picture.major}
-                                            className="w-4/5 md:w-3/5"
                                         />
                                     </div>
                                     <div className="grow px-4">
