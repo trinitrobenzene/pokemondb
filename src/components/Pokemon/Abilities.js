@@ -5,7 +5,7 @@ const Abilities = ({abilities}) => {
     return (
         <div className="list-decimal pl-1 py-2">
             {abilities.map((a, index) => (
-                <p key={a.slot} className={a.is_hidden?'text-xs text-orange-500':'text-blue-500'}>
+                <p key={a.slot} className={a.is_hidden?'text-xs text-blue-600':''}>
                     {index+1}. {upperFirst(a.ability.name.replace('-', ' '))}
                     {a.is_hidden && ' (hidden ability)'}
                 </p>

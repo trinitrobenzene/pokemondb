@@ -1,11 +1,11 @@
 import React from 'react';
-import { upperFirst } from '../Support';
+import { capitalFirstLetter, upperFirst } from '../Support';
 
 const Training = ({more}) => {
     let {detail, baseExp} = more;
 
     return (
-        <div className='mb-4'>
+        <div className='mb-4 w-1/2 lg:w-full'>
             <h3 className="font-bold mb-2">Training</h3>
             {detail && (
                 <div className="py-4">
@@ -25,7 +25,7 @@ const Training = ({more}) => {
                             </tr>
                             <tr className="border-td p-2">
                                 <td className='text-right pr-4 text-sm'>Growth Rate</td>
-                                <td>{upperFirst(detail.growthRate)}</td>
+                                <td>{capitalFirstLetter(detail.growthRate)}</td>
                             </tr>
                         </tbody>
                     </table>

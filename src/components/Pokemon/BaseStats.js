@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { upperFirst } from '../Support';
+import { capitalFirstLetter, upperFirst } from '../Support';
 
 const BaseStats = ({ stats }) => {
     const formatStat = (input) => {
-        return upperFirst(input.replace('ecial', '')).replace('-', '.');
+        return capitalFirstLetter(input.replace('ecial', '. '));
     };
 
     const total = useMemo(() => {
@@ -11,7 +11,6 @@ const BaseStats = ({ stats }) => {
     }, [stats]);
 
     const style = (stat) => {
-        // let percent = stat > 100 ? 100 : stat;
         let color = 'lime';
         if (stat < 55) color = 'tomato';
         else if (stat < 100) color = 'gold';
@@ -22,6 +21,19 @@ const BaseStats = ({ stats }) => {
             '--percent': `${stat * 0.5}%`,
             '--color': `${color}`,
         };
+    };
+
+    const boundStats = (stat) => {
+        let min, max;
+        if (stat.stat.name === 'hp') {
+            min = 2 * stat.base_stat + 110;
+            max = 2 * stat.base_stat + 31 + 63 + 110;
+        } else {
+            min = Math.floor((2 * stat.base_stat + 5) * 0.9);
+            max = Math.floor((2 * stat.base_stat + 31 + 63 + 5) * 1.1);
+        }
+
+        return { min, max };
     };
 
     return (
@@ -41,15 +53,20 @@ const BaseStats = ({ stats }) => {
                                     style={style(stat.base_stat)}
                                 ></div>
                             </td>
+                            <td className='pr-1'> {boundStats(stat).min} </td>
+                            <td>{boundStats(stat).max}</td>
                         </tr>
                     ))}
-                    <tr>
+                    <tr className="border-td p-2">
                         <td className="text-gray-500">Total</td>
                         <td className="font-bold">{total}</td>
+                        <td></td>
+                        <td className='pr-1 font-bold'>Min</td>
+                        <td className='font-bold'>Max</td>
                     </tr>
                 </tbody>
             </table>
-            <p className="py-4 text-gray-500 text-sm">
+            <p className="py-4 text-gray-500 text-sm text-justify">
                 The ranges shown on the right are for a level 100 Pokémon.
                 Maximum values are based on a beneficial nature, 252 EVs, 31
                 IVs; minimum values are based on a hindering nature, 0 EVs, 0

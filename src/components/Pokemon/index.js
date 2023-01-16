@@ -6,6 +6,7 @@ import { GetDetail, Breeding, DexEntries, Training } from '../Species';
 import { upperGen } from '../Support';
 import { TypeLink } from '../Type/Overview';
 import BaseStats from './BaseStats';
+import Evolution from './Evolution';
 import Quickview from './Quickview';
 import './style.css';
 
@@ -25,9 +26,10 @@ export const TypeInline = ({ types }) => {
 const Introduce = ({ props }) => {
     let { pokemon, detail } = props;
     return (
-        <p>
+        <p className="py-2">
             {pokemon.name} is a {<TypeInline types={pokemon.types} />} type
-            Pokémon introduced in {upperGen(detail.generation.name)}. It is know as '{detail.genera.genus}
+            Pokémon introduced in {upperGen(detail.generation.name)}. It is know
+            as '{detail.genera.genus}
             '.
         </p>
     );
@@ -62,35 +64,38 @@ const Pokemon = () => {
                 <h2 className="text-center font-bold">
                     {pokemon ? pokemon.name : ''}
                 </h2>
+                {pokemon && detail && <Introduce props={{ pokemon, detail }} />}
                 {pokemon && (
                     <>
-                        <div className="grid grid-cols-4 gap-4">
+                        <div className="lg:grid lg:grid-cols-4 gap-4">
                             <div className="col-span-3 py-4">
-                                {pokemon && detail && (
-                                    <Introduce props={{ pokemon, detail }} />
-                                )}
-                                <div className="flex">
-                                    <img
-                                        alt={name}
-                                        src={pokemon.picture.major}
-                                        className="w-3/5"
-                                    />
-                                    <div className="grow p-4">
+                                <div className="md:flex">
+                                    <div className="flex justify-center">
+                                        <img
+                                            alt={name}
+                                            src={pokemon.picture.major}
+                                            className="w-4/5 md:w-3/5"
+                                        />
+                                    </div>
+                                    <div className="grow px-4">
                                         <Quickview pokemon={pokemon} />
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-span-1 py-4">
+                            <div className="py-4 flex gap-8 lg:block col-span-1">
                                 <Training
                                     more={{ detail, baseExp: pokemon.baseExp }}
                                 />
                                 <Breeding detail={detail} />
                             </div>
                         </div>
-                        <div className="grid grid-cols-3">
-                            <div className="col-span-2">
-                                <BaseStats stats={pokemon.stats} />
-                            </div>
+                        <div className="py-4">
+                            <BaseStats stats={pokemon.stats} />
+                        </div>
+                        <div className="py-4">
+                            {detail && (
+                                <Evolution url={detail.evolutionChain} />
+                            )}
                         </div>
                         <DexEntries entries={detail ? detail.entries : []} />
                     </>

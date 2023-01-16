@@ -4,8 +4,8 @@ export const upperFirst = (word) =>
 
 export const capitalFirstLetter = (input) => {
     return input
-        .replace('-', ' ')
-        .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+        .replaceAll('-', ' ')
+        .replaceAll(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
 };
 
 // uppercase gen letter

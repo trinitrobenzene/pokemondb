@@ -3,9 +3,9 @@ import { upperFirst } from '../Support';
 
 const DexEntries = ({ entries }) => {
     return (
-        <div>
+        <div className="py-4">
             <h3 className="font-bold mb-2">DexEntries</h3>
-            <div className='py-4'>
+            <div>
                 <table className="infor-table table-auto">
                     <tbody>
                         {entries.map((entry, index) => {

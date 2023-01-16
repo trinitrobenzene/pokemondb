@@ -37,7 +37,7 @@
     }
 
     .infor-table {
-        @apply border-collapse border-td w-full;
+        @apply border-collapse border-td w-full my-4;
     }
 
     .alert-secondary {
@@ -53,11 +53,19 @@
     }
 
     .border-td > td {
-        @apply py-2;
+        @apply py-2 pr-1;
     }
 
     .border-td > td:first-child {
         @apply text-sm text-gray-500;
+    }
+
+    .nav-items {
+        @apply block px-4 py-2 text-sm text-white rounded-md hover:bg-slate-100 hover:text-gray-800;
+    }
+
+    .nav-sub {
+        @apply absolute left-0 z-10 w-full md:min-w-max origin-top-right bg-gray-600 rounded-md shadow-lg;
     }
 
     .types-btn {
