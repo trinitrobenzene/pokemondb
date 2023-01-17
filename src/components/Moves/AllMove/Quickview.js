@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MoveQuickView from '../DirectMove/MoveQuickView';
 
-const QuickView = ({ moves }) => {
+const QuickView = ({ moves, filter }) => {
     const [amount, setAmount] = useState(36);
     return (
         <div className="rounded-lg">
@@ -22,13 +22,13 @@ const QuickView = ({ moves }) => {
                         moves.map(
                             (move, i) =>
                                 i < amount && (
-                                    <MoveQuickView url={move} key={i} />
+                                    <MoveQuickView url={move} filter={filter} key={i} />
                                 )
                         )}
                 </tbody>
             </table>
             <button
-                className={"btn self-center" + moves.length >= amount ? '' : 'hidden'}
+                className={'btn self-center'}
                 onClick={() => setAmount(amount + 36)}
             >
                 Load More

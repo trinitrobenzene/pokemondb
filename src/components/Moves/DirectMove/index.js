@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { capitalFirstLetter, upperFirst, upperGen } from '../../Support';
 import MoveData from './MoveData';
@@ -14,16 +15,22 @@ export const hanleData = (data) => {
         pokemons: data.learned_by_pokemon.map((poke) => poke.url),
         generation: upperGen(data.generation.name),
         change: data.effect_chance,
-        effect_entries: {
-            effect: data.effect_entries[0].effect.replaceAll(
-                '$effect_chance',
-                data.effect_chance
-            ),
-            short: data.effect_entries[0].short_effect.replaceAll(
-                '$effect_chance',
-                data.effect_chance
-            ),
-        },
+        effect_entries:
+            data.effect_entries.length === 0
+                ? {
+                      effect: 'Sorry, the data about this move is incomplete',
+                      short: 'Incomplete data...',
+                  }
+                : {
+                      effect: data.effect_entries[0].effect.replaceAll(
+                          '$effect_chance',
+                          data.effect_chance
+                      ),
+                      short: data.effect_entries[0].short_effect.replaceAll(
+                          '$effect_chance',
+                          data.effect_chance
+                      ),
+                  },
         entries: data.flavor_text_entries
             .filter((entry) => entry.language.name === 'en')
             .map((entry) => {
@@ -47,6 +54,8 @@ export const hanleData = (data) => {
 const DirectMove = () => {
     const { name } = useParams();
     const [move, setMove] = useState(null);
+    /* const state = useSelector(state => state);
+    console.log(state); */
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/move/${name}`)
             .then((res) => res.json())

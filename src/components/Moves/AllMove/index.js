@@ -1,18 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SET_MOVE } from '../../Redux/Action';
 import { AllTypes } from '../../Type';
 import QuickView from './Quickview';
 
+// export const FilterContext = createContext();
+
 const AllMoves = () => {
+    /* const [sortByType, setSortByType] = useState('all');
+    const value = {
+        type: sortByType,
+    }; */
     const moves = useSelector((state) => state.Move);
     const dispatch = useDispatch();
+
+    const handleSortByType = (e) => {
+        console.log(moves);
+    };
 
     useEffect(() => {
         fetch('https://pokeapi.co/api/v2/move/?offset=0&limit=2000')
             .then((res) => res.json())
-            .then((data) => dispatch({ type: SET_MOVE, payload: data }));
+            .then((data) => {
+                dispatch({ type: SET_MOVE, payload: data });
+            });
     }, []);
 
     return (
@@ -48,14 +60,14 @@ const AllMoves = () => {
                     <select
                         name="move-type"
                         className="rounded border border-gray-300 p-1"
+                        onChange={handleSortByType}
                     >
                         <option defaultValue value={'all'}>
                             All
                         </option>
                         {AllTypes.map((type) => (
                             <option value={type} key={type}>
-                                {' '}
-                                {type}{' '}
+                                {type}
                             </option>
                         ))}
                     </select>

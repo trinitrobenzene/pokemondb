@@ -1,7 +1,6 @@
 import React from 'react';
 
 const MoveEffect = ({ props }) => {
-    // const statsChange = props && props.stat_changes;
     const status = [
         {
             name: 'sleep',
@@ -18,9 +17,11 @@ const MoveEffect = ({ props }) => {
     ];
 
     const moreDetail = (change) => {
-        if (change.length > 0) 
-            return 'Stats can be raised to a maximum of +6 stages each.'
-        let res = status.find((s) => s.name === props.meta.ailment.name);
+        if (change && change.length > 0)
+            return 'Stats can be raised to a maximum of +6 stages each.';
+        let res = status.find((s) => {
+            return props.meta ? s.name === props.meta.ailment.name : null;
+        });
         return res ? res.detail : '';
     };
 
@@ -30,7 +31,12 @@ const MoveEffect = ({ props }) => {
             {props && (
                 <div className="text-justify">
                     <div>
-                        <p dangerouslySetInnerHTML={{ __html: props.effect_entries.effect }} className='mb-2'/>
+                        <p
+                            dangerouslySetInnerHTML={{
+                                __html: props.effect_entries.effect,
+                            }}
+                            className="mb-2"
+                        />
                         {moreDetail(props.stat_changes)}
                     </div>
                 </div>

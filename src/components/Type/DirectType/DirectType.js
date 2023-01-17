@@ -1,10 +1,12 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+
 import { GET_TYPE } from '../../Redux/Action';
 import { upperFirst } from '../../Support';
 import MovesType from './MovesType';
 import PokemonType from './PokemonType';
+import RelationsType from './RelationsType';
 
 const DirectType = () => {
     const [index, setIndex] = useState(0);
@@ -20,13 +22,42 @@ const DirectType = () => {
     return (
         <div className="main-width bg-slate-50">
             <div className="p-8">
-                <h2 className="text-center font-bold">
+                <h2 className="text-center font-bold my-4">
                     {upperFirst(name) + ' '}
                     <Link to="/type" className="hover:underline opacity-80">
                         (type)
                     </Link>
                 </h2>
-                <div className="alert-secondary mt-4">
+
+                <ul className="text-sm font-medium text-center divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+                    <li className="w-full hover:cursor-pointer">
+                        <span
+                            className={index === 0 ? 'bg-indigo-100 tabs-items' : 'tabs-items'}
+                            onClick={() => setIndex(0)}
+                        >
+                            Attack pros & cons
+                        </span>
+                    </li>
+                    <li className="w-full hover:cursor-pointer">
+                        <span
+                            className={index === 1 ? 'bg-indigo-100 tabs-items' : 'tabs-items'}
+                            aria-current={'page'}
+                            onClick={() => setIndex(1)}
+                        >
+                            {upperFirst(name)} Pokémons
+                        </span>
+                    </li>
+                    <li className="w-full hover:cursor-pointer">
+                        <span
+                            className={index === 2 ? 'bg-indigo-100 tabs-items' : 'tabs-items'}
+                            onClick={() => setIndex(2)}
+                        >
+                            {upperFirst(name)} Moves
+                        </span>
+                    </li>
+                </ul>
+
+                <div className="alert-secondary my-4">
                     <p>
                         Grass is one of the three basic elemental types along
                         with Fire and Water, which constitute the three starter
@@ -42,37 +73,13 @@ const DirectType = () => {
                     </p>
                 </div>
 
-                <ul className="text-sm font-medium text-center divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
-                    <li className="w-full">
-                        <span
-                            className="inline-block w-full p-4 text-gray-900 bg-gray-100 rounded-l-lg focus:ring-4 focus:ring-blue-300 active focus:outline-none dark:bg-gray-700 dark:text-white"
-                            aria-current={'page'}
-                            onClick={() => setIndex(0)}
-                        >
-                            {upperFirst(name)} Pokémons
-                        </span>
-                    </li>
-                    <li className="w-full">
-                        <span
-                            className="inline-block w-full p-4  hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                            onClick={() => setIndex(1)}
-                        >
-                            {upperFirst(name)} Moves
-                        </span>
-                    </li>
-                    <li className="w-full">
-                        <span
-                            className="inline-block w-full p-4  hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                            onClick={() => setIndex(2)}
-                        >
-                            Attack pros & cons
-                        </span>
-                    </li>
-                </ul>
                 <div className={index === 0 ? 'visible' : 'hidden'}>
-                    <PokemonType />
+                    <RelationsType />
                 </div>
                 <div className={index === 1 ? 'visible' : 'hidden'}>
+                    <PokemonType />
+                </div>
+                <div className={index === 2 ? 'visible' : 'hidden'}>
                     <MovesType />{' '}
                 </div>
             </div>

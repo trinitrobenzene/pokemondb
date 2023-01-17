@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { TbPokeball, TbSettings } from 'react-icons/tb';
-import { BsController } from 'react-icons/bs';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { BiSearch } from 'react-icons/bi';
 
 import './style.css';
-import Item from './Item';
+import { SettingItem, DataItem, MechanicsItem } from './Item';
 import { SET_VERSION } from '../../Redux/Action';
 
 const NavBar = () => {
@@ -16,39 +15,28 @@ const NavBar = () => {
             .then((data) => dispatch({ type: SET_VERSION, payload: data }));
     }, []);
 
-    const itemList = [
-        {
-            name: 'Pokémon Data',
-            icon: <TbPokeball className="w-1/4" />,
-            childs: [],
-        },
-        {
-            name: 'Game mechanics',
-            icon: <BsController className="w-1/4" />,
-            childs: [],
-        },
-        {
-            name: 'Pokémon Games',
-            icon: <TbSettings className="w-1/4" />,
-            childs: []
-        },
-    ];
-
     return (
-        <nav className="text-white bg-gray-600">
+        <nav className="bg-gray-600">
             <div className="main-width p-2 md:px-0 md:grid md:grid-cols-4">
-                <ul className="grid grid-cols-3 items-center md:col-span-3 relative">
-                    {itemList.map((item, i) => (
-                        <li className="col-span-1" key={i}>
-                            <Item props={item} />
-                        </li>
-                    ))}
+                <ul className="grid grid-cols-3 items-center md:col-span-3 relative text-white">
+                    <li>
+                        <DataItem />
+                    </li>
+                    <li>
+                        <MechanicsItem />
+                    </li>
+                    <li>
+                        <SettingItem />
+                    </li>
                 </ul>
-                <div className="py-2 md:py-0 md:col-span-1">
+                <div className="my-auto md:py-0 md:col-span-1 md:ml-2 bg-stone-100 rounded flex">
                     <input
-                        placeholder="Search"
-                        className="rounded py-1 px-2 w-full"
+                        placeholder="Search..."
+                        className="rounded py-1 px-2 bg-transparent w-5/6 focus:outline-none"
                     />
+                    <div className="p-1 w-1/6 relative">
+                        <BiSearch size={'28px'} className="text-gray-500 absolute right-px" />
+                    </div>
                 </div>
             </div>
         </nav>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Moves = () => {
+    
     return (
         <div className="main-width bg-slate-50 p-8">
             <h1 className="text-center font-bold">Pokémon Attackdex</h1>
