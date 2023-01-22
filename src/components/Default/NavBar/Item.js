@@ -66,8 +66,8 @@ export const MechanicsItem = () => {
             </div>
             <div className="nav-sub">
                 <div className="p-2 text-white">
-                    <p className="nav-items">Natures</p>
-                    <p className="nav-items">Abilities</p>
+                    <Link to='/nature' className="nav-items">Natures</Link>
+                    <Link to='/ability' className="nav-items">Abilities</Link>                    
                 </div>
             </div>
         </div>

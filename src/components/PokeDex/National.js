@@ -4,7 +4,7 @@ import { MediumCard } from '../Pokemon/PokeCard';
 import { GET} from '../Redux/Action';
 
 const National = () => {
-    const [number, setNumber] = useState(60);
+    const [number, setNumber] = useState(48);
     const dispatch = useDispatch();
     const dex = useSelector(state => {
         return state.PokeDex;
@@ -17,7 +17,7 @@ const National = () => {
     }, []);
 
     const getMore = () => {
-        setNumber(number+60);
+        setNumber(number+48);
     };
 
     return (

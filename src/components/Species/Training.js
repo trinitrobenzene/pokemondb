@@ -6,10 +6,10 @@ const Training = ({more}) => {
 
     return (
         <div className='mb-4 w-1/2 lg:w-full'>
-            <h3 className="font-bold mb-2">Training</h3>
+            <h3 className="sub-title">Training</h3>
             {detail && (
-                <div className="py-4">
-                    <table className="border-collapse border-td table-fixed w-full">
+                <div className="pb-4">
+                    <table className="infor-table table-auto">
                         <tbody>
                             <tr className="border-td p-2">
                                 <td className='text-right pr-4 text-sm'>Catch rate</td>

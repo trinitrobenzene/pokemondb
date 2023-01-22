@@ -3,7 +3,7 @@
 
 @layer base {
     body {
-        @apply font-noto;
+        @apply font-fira;
     }
 
     h1 {
@@ -25,7 +25,7 @@
 
 @layer components {
     .main-width {
-        @apply box-border mx-auto w-full md:w-4/5;
+        @apply box-border mx-auto w-full md:w-11/12  lg:w-4/5;
     }
 
     h1.title {
@@ -57,7 +57,7 @@
     }
 
     .border-td > td {
-        @apply py-2 pr-1;
+        @apply py-2 pr-3;
     }
 
     .border-td > td:first-child {
@@ -95,6 +95,11 @@
     .text-outline {
         text-shadow: 1px 1px 2px rgb(0 0 0 / 70%);
     }
+
+    .bounded-element {
+        @apply overflow-y-scroll;
+        max-height: 400px;
+    }
 }
 
 * {
@@ -110,4 +115,26 @@
 
 .App > div {
     flex-grow: 1;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #d3d3d3 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #d3d3d3;
+    border-radius: 12px;
+    border: 3px solid #ffffff;
 }

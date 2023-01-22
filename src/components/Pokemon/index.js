@@ -26,12 +26,12 @@ export const TypeInline = ({ types }) => {
 const Introduce = ({ props }) => {
     let { pokemon, detail } = props;
     return (
-        <p className="py-2">
+        <div className="py-2">
             {pokemon.name} is a {<TypeInline types={pokemon.types} />} type
             Pokémon introduced in {upperGen(detail.generation.name)}. It is know
             as '{detail.genera.genus}
             '.
-        </p>
+        </div>
     );
 };
 
@@ -47,7 +47,6 @@ const Pokemon = () => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
             .then((res) => res.json())
             .then((data) => {
-                // console.log(data);
                 dispatch({ type: SET_POKEMON, payload: data });
             });
     }, [name, dispatch]);
@@ -61,22 +60,22 @@ const Pokemon = () => {
     return (
         <div className="main-width">
             <div className="bg-slate-50 p-8">
-                <h2 className="text-center font-bold">
+                <h1 className="title">
                     {pokemon ? pokemon.name : ''}
-                </h2>
-                {pokemon && detail && <Introduce props={{ pokemon, detail }} />}
-                {pokemon && (
+                </h1>
+                {pokemon && detail && (
                     <>
-                        <div className="lg:grid lg:grid-cols-4 gap-4">
-                            <div className="col-span-3 py-4">
+                        <Introduce props={{ pokemon, detail }} />
+                        <div className="lg:grid lg:grid-cols-3 gap-4">
+                            <div className="col-span-2 py-4">
                                 <div className="md:flex">
-                                    <div className="px-6">
+                                    <div className="px-6 w-3/5">
                                         <img
                                             alt={name}
                                             src={pokemon.picture.major}
                                         />
                                     </div>
-                                    <div className="grow px-4">
+                                    <div className="grow">
                                         <Quickview pokemon={pokemon} />
                                     </div>
                                 </div>

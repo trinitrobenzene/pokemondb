@@ -26,7 +26,7 @@ const Evolution = ({ url }) => {
     return (
         <div>
             <h3 className="sub-title">Evolution chart</h3>
-            <div className='md:flex justify-around'>
+            <div className='md:flex justify-around py-4'>
                 {chain ? (
                     <Travel piece={chain} />
                 ) : (

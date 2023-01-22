@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { pokeIdTransfer, upperFirst } from '../../Support';
 import { TypeLink } from '../../Type/Overview';
@@ -6,7 +6,7 @@ import { TypeLink } from '../../Type/Overview';
 export default function BaseCard({ url }) {
     const [pokemon, setPokemon] = useState(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetch(url)
             .then((res) => res.json())
             .then((data) =>
@@ -22,11 +22,11 @@ export default function BaseCard({ url }) {
     return (
         <>
             {pokemon && (
-                <div className="text-center b-4 md:mb-0">
-                    <div className='flex justify-center'>
-                        <img alt="portrait" src={pokemon.portrait} className='w-4/5 md:w-3/5'/>
-                    </div>
-                    <div>
+                <div className="mb-8 md:mb-0">
+                    <Link to={`/pokedex/${pokemon.name}`}>
+                        <img alt="portrait" src={pokemon.portrait} className='w-2/5 self-center'/>
+                    </Link>
+                    <div className='text-center'>
                         <Link
                             className="font-bold hover:underline text-blue-600"
                             to={`/pokedex/${pokemon.name}`}

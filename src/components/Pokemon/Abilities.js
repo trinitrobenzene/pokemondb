@@ -1,16 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { upperFirst } from '../Support';
 
-const Abilities = ({abilities}) => {
+const Abilities = ({ abilities }) => {
     return (
-        <div className="list-decimal pl-1 py-2">
+        <ol className="list-decimal pl-4 py-2">
             {abilities.map((a, index) => (
-                <p key={a.slot} className={a.is_hidden?'text-xs text-blue-600':''}>
-                    {index+1}. {upperFirst(a.ability.name.replace('-', ' '))}
-                    {a.is_hidden && ' (hidden ability)'}
-                </p>
+                <li key={a.slot}>
+                    <Link
+                        to={`/ability/${a.ability.name}`}
+                        className={
+                            a.is_hidden
+                                ? 'text-xs text-blue-600 hover:underline'
+                                : 'text-blue-600 hover:underline'
+                        }
+                    >
+                        {upperFirst(a.ability.name.replace('-', ' '))}
+                    </Link>
+                    {a.is_hidden && (
+                        <span className="text-xs"> (hidden ability)</span>
+                    )}
+                </li>
             ))}
-        </div>
+        </ol>
     );
 };
 export default Abilities;

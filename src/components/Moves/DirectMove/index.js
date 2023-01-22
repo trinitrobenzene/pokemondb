@@ -54,8 +54,7 @@ export const hanleData = (data) => {
 const DirectMove = () => {
     const { name } = useParams();
     const [move, setMove] = useState(null);
-    /* const state = useSelector(state => state);
-    console.log(state); */
+
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/move/${name}`)
             .then((res) => res.json())
@@ -66,11 +65,11 @@ const DirectMove = () => {
         <div className="main-width bg-slate-50 p-8">
             <h1 className="title">{name && capitalFirstLetter(name)} (move)</h1>
             <div className="py-6 md:grid md:grid-cols-3 md:gap-8">
-                <div className="col-span-1 mb-6 md:mb-0">
-                    <MoveData move={move} />
-                </div>
                 <div className="col-span-2">
                     {move && <MoveEffect props={move} />}
+                </div>
+                <div className="col-span-1 mb-6 md:mb-0">
+                    <MoveData move={move} />
                 </div>
             </div>
             <div className="py-6 md:grid md:grid-cols-3 md:gap-8">

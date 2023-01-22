@@ -1,4 +1,5 @@
 import React from 'react';
+import { capitalFirstLetter } from '../../Support';
 
 const MoveDescrip = ({ entries }) => {
     return (
@@ -8,7 +9,7 @@ const MoveDescrip = ({ entries }) => {
                 <tbody>
                     {entries.map((entry, index) => (
                         <tr className="border-td" key={index}>
-                            <td className='text-right font-bold pr-2'>{entry.versions}</td>
+                            <td className='text-right font-bold pr-2'>{capitalFirstLetter(entry.versions)}</td>
                             <td>{entry.content}</td>
                         </tr>
                     ))}

@@ -6,7 +6,7 @@ import Abilities from './Abilities';
 const Quickview = ({ pokemon }) => {
     return (
         <>
-            <h3 className="font-bold mb-2">Pokédex data</h3>
+            <h3 className="sub-title">Pokédex data</h3>
             <table className="infor-table table-auto">
                 <tbody>
                     <tr className='border-td'>
