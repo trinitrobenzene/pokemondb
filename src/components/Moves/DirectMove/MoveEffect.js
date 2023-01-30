@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingSkeleton from '../../Loading';
 
 const MoveEffect = ({ props }) => {
     const status = [
@@ -44,5 +45,22 @@ const MoveEffect = ({ props }) => {
         </>
     );
 };
+
+const Loading = () => {
+    return (
+        <>
+            <h3 className="font-bold mb-2">Effect</h3>
+            {(
+                <div className="text-justify">
+                    <LoadingSkeleton className='h-[20px] my-1 rounded'/>
+                    <LoadingSkeleton className='h-[20px] my-1 rounded'/>
+                    <LoadingSkeleton className='h-[20px] my-1 rounded'/>
+                </div>
+            )}
+        </>
+    );
+}
+
+MoveEffect.Loading = Loading;
 
 export default MoveEffect;

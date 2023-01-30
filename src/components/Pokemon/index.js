@@ -69,7 +69,7 @@ const Pokemon = () => {
                         <div className="lg:grid lg:grid-cols-3 gap-4">
                             <div className="col-span-2 py-4">
                                 <div className="md:flex">
-                                    <div className="px-6 w-3/5">
+                                    <div className="px-6 w-full md:w-[55%] lg:w-3/5">
                                         <img
                                             alt={name}
                                             src={pokemon.picture.major}

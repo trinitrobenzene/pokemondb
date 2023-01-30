@@ -12,7 +12,7 @@ const Nature = () => {
                 total of 25.
             </div>
             <div className="md:flex gap-6">
-                <div className="py-4 w-1/2">
+                <div className="py-4 md:w-1/2">
                     <div>
                         <h3 className="sub-title">Pokémon Natures</h3>
                         <div className="mt-2 text-justify">
@@ -63,7 +63,7 @@ const Nature = () => {
                         </div>
                     </div>
                 </div>
-                <div className="py-4 w-1/2">
+                <div className="py-4 md:w-1/2">
                     <h3 className="sub-title">Natures by stat</h3>
                     <div>
                         Find which nature corresponds to your preferred stat

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const DirectType = () => {
     const { name } = useParams();
     const dispatch = useDispatch();
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/type/${name}`)
             .then((res) => res.json())
             .then((data) => dispatch({ type: GET_TYPE, payload: data }));
@@ -22,12 +22,12 @@ const DirectType = () => {
     return (
         <div className="main-width bg-slate-50">
             <div className="p-8">
-                <h2 className="text-center font-bold my-4">
+                <h1 className="title my-4">
                     {upperFirst(name) + ' '}
                     <Link to="/type" className="hover:underline opacity-80">
                         (type)
                     </Link>
-                </h2>
+                </h1>
 
                 <ul className="text-sm font-medium text-center divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
                     <li className="w-full hover:cursor-pointer">
@@ -80,7 +80,7 @@ const DirectType = () => {
                     <PokemonType />
                 </div>
                 <div className={index === 2 ? 'visible' : 'hidden'}>
-                    <MovesType />{' '}
+                    <MovesType />
                 </div>
             </div>
         </div>

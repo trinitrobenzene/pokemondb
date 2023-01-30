@@ -66,10 +66,10 @@ const DirectMove = () => {
             <h1 className="title">{name && capitalFirstLetter(name)} (move)</h1>
             <div className="py-6 md:grid md:grid-cols-3 md:gap-8">
                 <div className="col-span-2">
-                    {move && <MoveEffect props={move} />}
+                    {move ? <MoveEffect props={move} /> : <MoveEffect.Loading />}
                 </div>
                 <div className="col-span-1 mb-6 md:mb-0">
-                    <MoveData move={move} />
+                    {move ? <MoveData move={move} /> : <MoveData.Loading />}
                 </div>
             </div>
             <div className="py-6 md:grid md:grid-cols-3 md:gap-8">

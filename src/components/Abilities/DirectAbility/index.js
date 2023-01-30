@@ -41,11 +41,11 @@ const DirectAbility = () => {
 
     return (
         <div className="main-width p-8 bg-slate-50">
+            <h1 className="title">
+                {capitalFirstLetter(name)} (ability)
+            </h1>
             {ability && (
                 <>
-                    <h1 className="title">
-                        {capitalFirstLetter(ability.name)} (ability)
-                    </h1>
                     <div className='py-4'>
                         <div className="mb-4 grid grid-cols-5 gap-6">
                             <div className="col-span-3">

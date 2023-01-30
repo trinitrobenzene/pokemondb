@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingSkeleton from '../../Loading';
 import { upperFirst } from '../../Support';
 import { TypeBtn } from '../../Type/Overview';
 
@@ -43,5 +44,47 @@ const MoveData = ({ move }) => {
         </>
     );
 };
+
+const Loading = () => {
+    return (
+        <>
+            <h3 className="font-bold mb-2">Move data</h3>
+            <table className="infor-table w-fixed">
+                <tbody>
+                    <tr className="border-td">
+                        <td className='text-right'>Type</td>
+                        <td><LoadingSkeleton className='w-[60px] h-[18px] rounded'/></td>
+                    </tr>
+                    <tr className="border-td">
+                        <td className='text-right'>Category</td>
+                        <td><LoadingSkeleton className='w-[60px] h-[18px] rounded'/></td>
+                    </tr>
+                    <tr className="border-td">
+                        <td className='text-right'>Power</td>
+                        <td><LoadingSkeleton className='w-[60px] h-[18px] rounded'/></td>
+                    </tr>
+                    <tr className="border-td">
+                        <td className='text-right'>Accuracy</td>
+                        <td><LoadingSkeleton className='w-[60px] h-[18px] rounded'/></td>
+                    </tr>
+                    <tr className="border-td">
+                        <td className='text-right'>PP</td>
+                        <td><LoadingSkeleton className='w-[60px] h-[18px] rounded'/></td>
+                    </tr>
+                    <tr className="border-td">
+                        <td className='text-right'>Priority</td>
+                        <td><LoadingSkeleton className='w-[60px] h-[18px] rounded'/></td>
+                    </tr>
+                    <tr className="border-td">
+                        <td className='text-right'>Introduced</td>
+                        <td><LoadingSkeleton className='w-[60px] h-[18px] rounded'/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </>
+    );
+};
+
+MoveData.Loading = Loading
 
 export default MoveData;

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { TbSwords, TbShield } from 'react-icons/tb';
 import { upperFirst } from '../../Support';
 import { TypeBtn } from '../Overview';
+import LoadingSkeleton from '../../Loading';
 
 const Relationship = ({ props }) => {
     const { content, list } = props;
@@ -15,16 +16,16 @@ const Relationship = ({ props }) => {
                 ))}
             </div>
         </div>
-    ) : (<></>);
+    ) : (
+        <></>
+    );
 };
 
 const RelationsType = () => {
-    const type = useSelector((state) => state.Type);
-    const { dameRelations, name } = type;
-
+    const { dameRelations, name } = useSelector((state) => state.Type);
     return (
         <>
-            {dameRelations && (
+            {dameRelations ? (
                 <div className="py-8 md:grid md:grid-cols-2 gap-12">
                     <div className="col-span-1">
                         <h3 className="sub-title">
@@ -87,9 +88,36 @@ const RelationsType = () => {
                         />
                     </div>
                 </div>
-            )}
+            ) : <Loading />}
         </>
     );
 };
 
-export default RelationsType;
+const Loading = () => {
+    return (
+        <div className="py-8 md:grid md:grid-cols-2 gap-12">
+            <div className="col-span-1">
+                <h3 className="sub-title">
+                    <TbShield className="inline mr-4" />
+                    Resistance ability
+                </h3>
+                <LoadingSkeleton className="my-2 h-[80px]" />
+                <LoadingSkeleton className="my-2 h-[80px]" />
+                <LoadingSkeleton className="my-2 h-[80px]" />
+            </div>
+            <div className="col-span-1 mt-8 md:mt-0">
+                <h3 className="sub-title">
+                    <TbSwords className="inline mr-4" />
+                    Attack ability
+                </h3>
+                <LoadingSkeleton className="my-2 h-[80px]" />
+                <LoadingSkeleton className="my-2 h-[80px]" />
+                <LoadingSkeleton className="my-2 h-[80px]" />
+            </div>
+        </div>
+    );
+};
+
+RelationsType.Loading = Loading;
+
+export default React.memo(RelationsType);

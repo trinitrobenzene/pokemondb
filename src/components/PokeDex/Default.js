@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Default() {
     return (
         <div className="main-width bg-slate-50 p-8">
-            <h2 className="text-center font-bold pb-8">Pokémon Pokédex by Generation</h2>
+            <h1 className="title pb-8">Pokémon Pokédex by Generation</h1>
             <div className="alert-secondary mt-4">
                 <p>
                     The Pokédex section has a wealth of information on all the

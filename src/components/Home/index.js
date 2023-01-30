@@ -5,7 +5,7 @@ const HomePage = () => {
     return (
         <div className="main-width">
             <div className="bg-slate-50 p-8">
-                <h2 className="text-center font-bold pb-8">Pokémon Pokédex</h2>
+                <h1 className="title mb-8">Pokémon Pokédex</h1>
                 <div className="alert-secondary">
                     <p>
                         The Pokédex section has a wealth of information on all

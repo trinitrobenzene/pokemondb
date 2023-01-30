@@ -25,7 +25,7 @@
 
 @layer components {
     .main-width {
-        @apply box-border mx-auto w-full md:w-11/12  lg:w-4/5;
+        @apply box-border mx-auto w-full md:w-[96%] lg:w-4/5;
     }
 
     h1.title {

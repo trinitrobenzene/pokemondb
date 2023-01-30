@@ -1,4 +1,4 @@
-import { GET_TYPE } from "../Action";
+import { GET_TYPE, SET_TYPE } from "../Action";
 
 const initialState = {
     name: '',
@@ -18,6 +18,12 @@ const TypeReducer = (state = initialState, { type, payload }) => {
                 moves: payload.moves,
                 pokemons: payload.pokemon.map(poke => poke.pokemon.url),
                 generation: payload.generation
+            }
+
+        case SET_TYPE:
+            return {
+                ...state,
+                ...payload
             }
     
         default:

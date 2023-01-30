@@ -40,7 +40,7 @@ export const DataItem = () => {
             </div>
             <div className="nav-sub">
                 <div className="p-2 text-white">
-                    <Link to="/pokedex" className="nav-items">
+                    <Link to="/national" className="nav-items">
                         Pokédex
                     </Link>
                     <Link to="/move" className="nav-items">
@@ -67,7 +67,7 @@ export const MechanicsItem = () => {
             <div className="nav-sub">
                 <div className="p-2 text-white">
                     <Link to='/nature' className="nav-items">Natures</Link>
-                    <Link to='/ability' className="nav-items">Abilities</Link>                    
+                    {/* <Link to='/ability' className="nav-items">Abilities</Link>                     */}
                 </div>
             </div>
         </div>

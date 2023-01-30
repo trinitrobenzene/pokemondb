@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { capitalFirstLetter, upperFirst } from '../Support';
+import Nature from './Nature';
 
 function Relation() {
     const [nature, setNature] = useState([]);
@@ -10,19 +10,15 @@ function Relation() {
             .then((result) => {
                 return result;
             });
-        
+
         let beta = alpha.map((n) => {
             return {
                 name: n.name,
-                increasing: n.increased_stat
-                    ? n.increased_stat.name
-                    : 'none',
-                decreasing: n.decreased_stat
-                    ? n.decreased_stat.name
-                    : 'none',
+                increasing: n.increased_stat ? n.increased_stat.name : 'none',
+                decreasing: n.decreased_stat ? n.decreased_stat.name : 'none',
             };
-        })
-        beta.sort((x,y) => x.name.localeCompare(y.name));
+        });
+        beta.sort((x, y) => x.name.localeCompare(y.name));
         beta.sort((x, y) => x.increasing.localeCompare(y.increasing));
 
         setNature(beta);
@@ -34,40 +30,13 @@ function Relation() {
             .then((data) => handleData(data.results.map((_) => _.url)));
     }, []);
 
-    nature && nature.length && console.log(nature);
+    // nature && nature.length && console.log(nature);
 
     return (
         <div>
-            {nature.length && (
-                <table className="infor-table">
-                    <thead className="bg-stone-200">
-                        <tr>
-                            <th>Nature</th>
-                            <th className='bg-g'>Increases</th>
-                            <th>Decreases</th>
-                        </tr>
-                    </thead>
-                    <tbody className="text-center">
-                        {nature.map((n) => (
-                                <tr className="border-td hover:bg-rose-50" key={n.name}>
-                                    <td className="text-base font-bold">
-                                        {upperFirst(n.name)}
-                                    </td>
-                                    <td>
-                                        {capitalFirstLetter(
-                                            n.increasing
-                                        ).replace('ecial ', '.')}
-                                    </td>
-                                    <td>
-                                        {capitalFirstLetter(
-                                            n.decreasing
-                                        ).replace('ecial ', '.')}
-                                    </td>
-                                </tr>
-                            ))}
-                    </tbody>
-                </table>
-            )}
+            {nature.length > 0 ? (
+                <Nature nature={nature}/>
+            ): <Nature.Loading />}
         </div>
     );
 }

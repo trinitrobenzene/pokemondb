@@ -1,30 +1,39 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { SET_MOVE } from '../../Redux/Action';
+import React, { useEffect, useState } from 'react';
+import { upperFirst } from '../../Support';
 import { AllTypes } from '../../Type';
+import { hanleData } from '../DirectMove';
 import QuickView from './Quickview';
 
-// export const FilterContext = createContext();
-
 const AllMoves = () => {
-    /* const [sortByType, setSortByType] = useState('all');
-    const value = {
-        type: sortByType,
-    }; */
-    const moves = useSelector((state) => state.Move);
-    const dispatch = useDispatch();
+    const [moves, setMoves] = useState(null);
+    const [sortByType, setSortByType] = useState('all')
 
-    const handleSortByType = (e) => {
-        console.log(moves);
+    const handleData = async (results) => {
+        const data = await Promise.all(results.map((url) => fetch(url)))
+        .then((resp) => Promise.all(resp.map((r) => {
+            return r.json()
+        })))
+
+        // console.log(data)
+        console.clear()
+
+        setMoves(data.map((move) => hanleData(move)));
     };
+
+    const moveFilter = (e) => {
+        setSortByType(e.target.value)
+    };
+
+    const allFilter = () => {
+        if (sortByType !== 'all')
+            return moves.filter(m => upperFirst(m.type) === sortByType)
+        return moves;
+    }
 
     useEffect(() => {
         fetch('https://pokeapi.co/api/v2/move/?offset=0&limit=2000')
             .then((res) => res.json())
-            .then((data) => {
-                dispatch({ type: SET_MOVE, payload: data });
-            });
+            .then((data) => handleData(data.results.map(r => r.url)));
     }, []);
 
     return (
@@ -38,9 +47,7 @@ const AllMoves = () => {
                 </p>
                 <p className="py-1">
                     Click a move name to see even more detailed information,
-                    including which Pokémon can learn that move. You can click a
-                    column heading to instantly sort by that column, or filter
-                    on move name, type and category using the options provided.
+                    including which Pokémon can learn that move.
                 </p>
             </div>
             <div className="flex justify-around py-4">
@@ -60,7 +67,7 @@ const AllMoves = () => {
                     <select
                         name="move-type"
                         className="rounded border border-gray-300 p-1"
-                        onChange={handleSortByType}
+                        onChange={moveFilter}
                     >
                         <option defaultValue value={'all'}>
                             All
@@ -73,7 +80,7 @@ const AllMoves = () => {
                     </select>
                 </div>
             </div>
-            {moves && <QuickView moves={moves.list} />}
+            {<QuickView moves={allFilter()} />}
         </div>
     );
 };
